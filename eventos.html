@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS</title>
+</head>
+<body>
+  <script>
+    function contar() {
+      for (let i = 1; i < 4; i++) {
+        alert(`Contador: ${i}`)
+      }
+    }
+  </script>
+  <input type="button" value="Saludar" onclick="alert('Hola!')"> <!-- on(event) -->
+  <input type="button" value="Contar" onclick="contar()">
+  <input id="elem" type="button" value="handlerDOM">
+  <button onclick="alert(this.innerHTML)">This</button>
+  <input id="elem2" type="button" value="Contar2" onclick="contar()">
+  <input id="elem3" type="button" value="addEventListener">
+  <input id="elem4" type="button" value="objHandler">
+  <button id="elem5">objHandler - addEventListener</button>
+  <button id="elem6">classHandler - addEventListener</button>
+
+  <script>
+    let obj = {
+      handleEvent(evt) {
+        alert(`${evt.type} en el ${evt.currentTarget}`)
+      }
+    }
+    elem5.addEventListener("click", obj)
+
+    class Eje {
+      // handleEvent(evt) {
+      //   switch(evt.type) {
+      //     case 'mousedown':
+      //       elem6.innerHTML = "Botón del mouse presionado";
+      //       break;
+      //     case 'mouseup':
+      //       elem6.innerHTML += " y soltado";
+      //       break;
+      //   }
+      // }
+
+      handleEvent(evt) {
+        let method = 'on' + evt.type[0].toUpperCase() + event.type.slice(1);
+        this[method](event)
+      }
+
+      onMousedown() {
+        elem6.innerHTML = "Botón del mouse presionado";
+      }
+
+      onMouseup() {
+        elem6.innerHTML += " y soltado";
+      }
+    }
+
+    let insEje = new Eje();
+    elem6.addEventListener('mousedown', insEje);
+    elem6.addEventListener('mouseup', insEje);
+
+    elem.onclick = function () {
+      document.writeln("Hola Tripulantes!")
+    }
+
+    elem.onclick = function () {
+      alert("Segundo Handler")
+    }
+
+    function handler1() {
+      alert("Primer Handler")
+    }
+    
+    function handler2() {
+      alert("Otro Handler")
+    }
+
+    elem3.addEventListener("click", handler1)
+    elem3.addEventListener("click", handler2)
+
+    //elem.onclick = null;
+
+    elem2.onclick = contar;
+
+    elem4.onclick = function (evt) {
+      alert(`${evt.type} en el ${evt.currentTarget}`)
+      console.log(evt)
+    }
+  </script>
+</body>
+</html>

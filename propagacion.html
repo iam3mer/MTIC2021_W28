@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS</title>
+</head>
+<body>
+  <div onclick="alert('El manejador!')">
+    <p>
+      Si haces click en este <code>parrafo</code>, el manejador en <code>DIV</code> se ejecuta!
+    </p>
+  </div>
+
+  <form onclick="alert('Soy el FORM!')">
+    <div onclick="alert('Soy el DIV!')">
+      <p onclick="alert(event.target)">Un parrafo!</p>
+    </div>
+  </form>
+
+  <div onclick="alert('No se mostrara, la propagación no llega hasta aquí!')">
+    <p onclick="event.stopPropagation()">
+      Da click
+    </p>
+  </div>
+</body>
+</html>
